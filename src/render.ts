@@ -49,9 +49,8 @@ export function renderHome(latest: { date: string; html: string } | null, archiv
   if (latest) {
     content += '<div class="briefing-meta">'
       + '<span class="date">' + latest.date + '</span>'
-      + '<span class="tagline">30 秒读懂今日 AI 要闻</span>'
       + '</div>'
-    content += latest.html
+    content += '<div class="content">' + latest.html + '</div>'
   } else {
     content = '<div class="not-found"><h2>暂无最新简报</h2><p>首期简报正在生成中，请稍候。</p></div>'
   }
@@ -79,7 +78,7 @@ export function renderBriefing(date: string, html: string, meta: BriefingMeta | 
   const content = '<div class="briefing-meta">'
     + '<span class="date">' + date + itemCount + '</span>'
     + '<span class="tagline">' + sectionCount + '</span>'
-    + '</div>' + html
+    + '</div><div class="content">' + html + '</div>'
     + '<p style="font-size:.75rem;color:#bbb;margin-top:8px"><a href="/">← 返回首页</a></p>'
 
   return Layout({ title, children: content })
