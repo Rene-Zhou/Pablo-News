@@ -78,13 +78,7 @@ app.get('/archive', async (c) => {
     return c.html(renderArchive([], {}))
   }
 
-  const metaMap: Record<string, any> = {}
-  for (const d of dates) {
-    const md = await fetchBriefing(c.env, d)
-    if (md) metaMap[d] = parseMeta(d, md)
-  }
-
-  return c.html(renderArchive(dates, metaMap))
+  return c.html(renderArchive(dates, {}))
 })
 
 /* ============ RSS Feed ============ */

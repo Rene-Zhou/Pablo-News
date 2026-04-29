@@ -71,13 +71,10 @@ export function renderHome(latest: { date: string; html: string } | null, archiv
 }
 
 export function renderBriefing(date: string, html: string, meta: BriefingMeta | null): string {
-  const itemCount = meta ? ' · ' + meta.itemCount + ' 条' : ''
-  const sectionCount = meta ? meta.sections + ' 个板块' : ''
-  const title = date + itemCount
+  const title = date
 
   const content = '<div class="briefing-meta">'
-    + '<span class="date">' + date + itemCount + '</span>'
-    + '<span class="tagline">' + sectionCount + '</span>'
+    + '<span class="date">' + date + '</span>'
     + '</div><div class="content">' + html + '</div>'
     + '<p style="font-size:.75rem;color:#bbb;margin-top:8px"><a href="/">← 返回首页</a></p>'
 
@@ -86,15 +83,12 @@ export function renderBriefing(date: string, html: string, meta: BriefingMeta | 
 
 export function renderArchive(dates: string[], metaMap: Record<string, BriefingMeta>): string {
   const list = dates.map(d => {
-    const m = metaMap[d]
-    const count = m ? ' · ' + m.itemCount + ' 条' : ''
-    const highlight = m?.headline ? ' · ' + m.headline.slice(0, 30) : ''
-    return '<li><a href="/' + d + '">' + d + '</a><span class="arc-date">' + count + highlight + '</span></li>'
+    return '<li><a href="/' + d + '">' + d + '</a></li>'
   }).join('\n')
 
   const content = '<section>'
     + '<h2>全部简报</h2>'
-    + '<p style="font-size:.875rem;color:#888;margin-bottom:16px">共 ' + dates.length + ' 期 · 按日期降序</p>'
+    + '<p style="font-size:.875rem;color:#888;margin-bottom:16px">共 ' + dates.length + ' 期</p>'
     + '<ul class="archive-list">' + list + '</ul>'
     + '</section>'
 
