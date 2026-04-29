@@ -1,0 +1,11 @@
+name = "pablo-news"
+main = "src/index.ts"
+compatibility_date = "2025-04-01"
+
+routes = [
+  { pattern = "news.renezhou.com", custom_domain = true }
+]
+
+kv_namespaces = [
+  { binding = "BRIEFINGS", id = "YOUR_KV_ID" }
+]
