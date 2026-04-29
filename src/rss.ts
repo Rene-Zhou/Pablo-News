@@ -10,9 +10,10 @@ export async function generateRSS(
 ): Promise<string> {
   const dates: string[] = []
   const today = new Date()
-  for (let i = 0; i < 365; i++) {
+  // Search tomorrow first, then today, then yesterday...
+  for (let offset = 1; offset >= -365; offset--) {
     const d = new Date(today)
-    d.setDate(d.getDate() - i)
+    d.setDate(d.getDate() + offset)
     const dateStr = d.toISOString().slice(0, 10)
     const md = await fetchBriefing(env, dateStr)
     if (md) dates.push(dateStr)

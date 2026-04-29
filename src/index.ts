@@ -19,12 +19,14 @@ async function fetchBriefing(env: Bindings, date: string): Promise<string | null
   }
 }
 
+/** Search for briefing files by iterating forward then backward from today */
 async function listAllBriefings(env: Bindings): Promise<string[]> {
   const dates: string[] = []
   const today = new Date()
-  for (let i = 0; i < 365; i++) {
+  // Search tomorrow -> today -> yesterday -> ... (covers briefing generated for "next day")
+  for (let offset = 1; offset >= -365; offset--) {
     const d = new Date(today)
-    d.setDate(d.getDate() - i)
+    d.setDate(d.getDate() + offset)
     const dateStr = d.toISOString().slice(0, 10)
     const md = await fetchBriefing(env, dateStr)
     if (md) dates.push(dateStr)
@@ -32,26 +34,26 @@ async function listAllBriefings(env: Bindings): Promise<string[]> {
   return dates
 }
 
+/** Find the latest briefing by date */
+async function findLatest(env: Bindings): Promise<{ date: string; content: string } | null> {
+  const today = new Date()
+  for (let offset = 1; offset >= -365; offset--) {
+    const d = new Date(today)
+    d.setDate(d.getDate() + offset)
+    const dateStr = d.toISOString().slice(0, 10)
+    const md = await fetchBriefing(env, dateStr)
+    if (md) return { date: dateStr, content: md }
+  }
+  return null
+}
+
 /* ============ 首页 ============ */
 app.get('/', async (c) => {
-  let latestMd: string | null = null
-  let latestDate: string | null = null
-  const today = new Date()
-  for (let i = 0; i < 365; i++) {
-    const d = new Date(today)
-    d.setDate(d.getDate() - i)
-    const dateStr = d.toISOString().slice(0, 10)
-    const md = await fetchBriefing(c.env, dateStr)
-    if (md) {
-      latestMd = md
-      latestDate = dateStr
-      break
-    }
-  }
-
+  const latest = await findLatest(c.env)
   const allDates = await listAllBriefings(c.env)
+
   return c.html(renderHome(
-    latestMd && latestDate ? { date: latestDate, html: renderMarkdown(latestMd) } : null,
+    latest ? { date: latest.date, html: renderMarkdown(latest.content) } : null,
     allDates
   ))
 })
