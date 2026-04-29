@@ -7,5 +7,5 @@ routes = [
 ]
 
 kv_namespaces = [
-  { binding = "BRIEFINGS", id = "YOUR_KV_ID" }
+  { binding = "BRIEFINGS", id = "cc113354825c4497b39a2fd99684a17d" }
 ]
