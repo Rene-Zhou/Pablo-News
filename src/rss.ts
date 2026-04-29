@@ -1,21 +1,31 @@
-import { Env, listDates, getBriefing, getBriefingMeta } from './kv'
-import { parseMeta, renderMarkdown } from './markdown'
+import { renderMarkdown, parseMeta } from './markdown'
 
 const SITE_URL = 'https://news.renezhou.com'
 const SITE_NAME = '科技早报'
 const SITE_DESC = 'AI 科技早报 · 每日清晨推送全球 AI 领域动态'
 
-export async function generateRSS(env: Env): Promise<string> {
-  const dates = await listDates(env)
+export async function generateRSS(
+  env: { BRIEFINGS_ASSETS: Fetcher },
+  fetchBriefing: (env: { BRIEFINGS_ASSETS: Fetcher }, date: string) => Promise<string | null>
+): Promise<string> {
+  const dates: string[] = []
+  const today = new Date()
+  for (let i = 0; i < 365; i++) {
+    const d = new Date(today)
+    d.setDate(d.getDate() - i)
+    const dateStr = d.toISOString().slice(0, 10)
+    const md = await fetchBriefing(env, dateStr)
+    if (md) dates.push(dateStr)
+    if (dates.length >= 30) break
+  }
+
   const items: string[] = []
 
-  for (const date of dates.slice(0, 30)) {
-    const md = await getBriefing(env, date)
-    const meta = await getBriefingMeta(env, date)
-    if (!md || !meta) continue
-
+  for (const date of dates) {
+    const md = await fetchBriefing(env, date)
+    if (!md) continue
+    const meta = parseMeta(date, md)
     const html = renderMarkdown(md)
-    // 截取正文预览
     const preview = stripHtml(html).slice(0, 500).replace(/\n+/g, ' ').trim()
 
     items.push(`

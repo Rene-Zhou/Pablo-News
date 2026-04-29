@@ -1,11 +1,10 @@
 name = "pablo-news"
 main = "src/index.ts"
 compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+assets = { directory = "briefings", binding = "BRIEFINGS_ASSETS" }
 
 routes = [
   { pattern = "news.renezhou.com", custom_domain = true }
-]
-
-kv_namespaces = [
-  { binding = "BRIEFINGS", id = "cc113354825c4497b39a2fd99684a17d" }
 ]
