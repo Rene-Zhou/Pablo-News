@@ -41,23 +41,23 @@ function Layout(props: { title: string; children: string }) {
 
 export function renderHome(latest: { date: string; html: string } | null, archiveDates: string[]): string {
   const title = latest
-    ? '🤖 ' + latest.date + ' — AI 科技早报'
+    ? latest.date + ' — AI 科技早报'
     : 'AI 科技早报'
 
   let content = ''
 
   if (latest) {
-    content += `<div class="briefing-meta">
-      <span class="date">${latest.date}</span>
-      <span class="tagline">30 秒读懂今日 AI 要闻</span>
-    </div>`
+    content += '<div class="briefing-meta">'
+      + '<span class="date">' + latest.date + '</span>'
+      + '<span class="tagline">30 秒读懂今日 AI 要闻</span>'
+      + '</div>'
     content += latest.html
   } else {
     content = '<div class="not-found"><h2>暂无最新简报</h2><p>首期简报正在生成中，请稍候。</p></div>'
   }
 
   if (archiveDates.length > 1) {
-    content += '<section><h2>📚 历史简报</h2><ul class="archive-list">'
+    content += '<section><h2>历史简报</h2><ul class="archive-list">'
     for (const date of archiveDates.slice(0, 7)) {
       const label = date === latest?.date ? '（最新）' : ''
       content += '<li><a href="/' + date + '">' + date + '</a><span class="arc-date">' + label + '</span></li>'
@@ -74,7 +74,7 @@ export function renderHome(latest: { date: string; html: string } | null, archiv
 export function renderBriefing(date: string, html: string, meta: BriefingMeta | null): string {
   const itemCount = meta ? ' · ' + meta.itemCount + ' 条' : ''
   const sectionCount = meta ? meta.sections + ' 个板块' : ''
-  const title = '🤖 ' + date + itemCount
+  const title = date + itemCount
 
   const content = '<div class="briefing-meta">'
     + '<span class="date">' + date + itemCount + '</span>'
@@ -94,7 +94,7 @@ export function renderArchive(dates: string[], metaMap: Record<string, BriefingM
   }).join('\n')
 
   const content = '<section>'
-    + '<h2>📚 全部简报</h2>'
+    + '<h2>全部简报</h2>'
     + '<p style="font-size:.875rem;color:#888;margin-bottom:16px">共 ' + dates.length + ' 期 · 按日期降序</p>'
     + '<ul class="archive-list">' + list + '</ul>'
     + '</section>'
