@@ -3,3 +3,24 @@ dist/
 .dev.vars
 *.log
 .wrangler/
+
+# 本地安装的 gh CLI 二进制
+.bin/gh
+
+# 本地凭证文件（可选）
+.git-credentials
+
+# 临时文件
+*.log
+.DS_Store
+
+# 本地配置（包含 sensitive token）
+.config/
+.git-credentials
+
+# 本地安装的 gh CLI 二进制
+.bin/gh
+
+# 临时文件
+*.log
+.DS_Store
