@@ -5,9 +5,11 @@ const SITE_URL = 'https://news.renezhou.com'
 const SITE_NAME = '科技早报'
 
 const FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="4" fill="#fff"/>
-  <text x="32" y="24" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#111">NE</text>
-  <text x="32" y="40" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#111">WS</text>
+  <rect width="64" height="64" rx="14" fill="#2563eb"/>
+  <rect x="16" y="12" width="32" height="40" rx="4" fill="#fff"/>
+  <rect x="20" y="20" width="24" height="3" rx="1.5" fill="#2563eb" opacity="0.6"/>
+  <rect x="20" y="28" width="18" height="3" rx="1.5" fill="#2563eb" opacity="0.4"/>
+  <rect x="20" y="36" width="22" height="3" rx="1.5" fill="#2563eb" opacity="0.4"/>
 </svg>`
 
 function Layout(props: { title: string; children: string }) {
