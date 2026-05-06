@@ -125,5 +125,9 @@ footer a:hover{color:#666}
   .content ul{color:#888}
   .content p:last-of-type{color:#666}
   footer{border-top-color:#2a2a2e}
+  .archive-list li{border-bottom-color:#2a2a2e}
+  .archive-list li a{color:#e0e0e0}
+  .archive-list li a:hover{color:#60a5fa}
+  .archive-list .arc-date{color:#666}
 }
 `
