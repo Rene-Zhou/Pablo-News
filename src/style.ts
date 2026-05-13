@@ -10,15 +10,32 @@ body{
 
 /* ===== Header ===== */
 header{
-  padding:48px 0 24px;border-bottom:2px solid #e0e0e0;
+  padding:48px 0 16px;border-bottom:2px solid #e0e0e0;
+}
+.header-top{
   display:flex;justify-content:space-between;align-items:flex-end;
-  flex-wrap:wrap;gap:12px
+  flex-wrap:wrap;gap:12px;margin-bottom:10px
 }
 header h1{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em}
 header h1 a{color:#1a1a1a;text-decoration:none}
-header nav{display:flex;gap:20px}
-header nav a{color:#666;text-decoration:none;font-size:.875rem;transition:color .15s}
-header nav a:hover{color:#1a1a1a}
+.header-nav{display:flex;gap:20px}
+.header-nav a{color:#666;text-decoration:none;font-size:.875rem;transition:color .15s}
+.header-nav a:hover{color:#1a1a1a}
+
+/* ===== Tab Navigation ===== */
+.tabs{
+  display:flex;gap:0;margin-top:4px
+}
+.tab{
+  display:inline-block;padding:6px 20px;font-size:.875rem;font-weight:500;
+  color:#666;text-decoration:none;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s
+}
+.tab:hover{color:#1a1a1a}
+.tab.active{
+  color:var(--accent,#2563eb);border-bottom-color:var(--accent,#2563eb)
+}
 
 /* ===== Briefing Meta ===== */
 .briefing-meta{
@@ -50,7 +67,7 @@ header nav a:hover{color:#1a1a1a}
 .content p:last-of-type{
   font-size:.8125rem;color:#999
 }
-.content p:last-of-type a{color:#2563eb;text-decoration:none}
+.content p:last-of-type a{color:var(--accent,#2563eb);text-decoration:none}
 .content p:last-of-type a:hover{text-decoration:underline}
 
 /* hr separators between top news items */
@@ -69,7 +86,7 @@ header nav a:hover{color:#1a1a1a}
 .content blockquote p{color:#666;font-size:.875rem;margin:0}
 
 /* Links in content */
-.content a{color:#2563eb;text-decoration:none}
+.content a{color:var(--accent,#2563eb);text-decoration:none}
 .content a:hover{text-decoration:underline}
 
 /* Lists (e.g. bullet points in perspectives) */
@@ -82,7 +99,7 @@ header nav a:hover{color:#1a1a1a}
   display:flex;justify-content:space-between;align-items:center
 }
 .archive-list li a{color:#1a1a1a;text-decoration:none;font-weight:500}
-.archive-list li a:hover{color:#2563eb}
+.archive-list li a:hover{color:var(--accent,#2563eb)}
 .archive-list .arc-date{font-size:.8125rem;color:#999}
 
 /* ===== Footer ===== */
@@ -97,12 +114,21 @@ footer a:hover{color:#666}
 .not-found{text-align:center;padding:80px 0}
 .not-found h2{font-size:1.5rem;border:none;margin-bottom:8px}
 .not-found p{color:#999;font-size:.875rem}
-.not-found a{color:#2563eb;text-decoration:none}
+.not-found a{color:var(--accent,#2563eb);text-decoration:none}
+
+/* ===== About ===== */
+.about-section{padding:24px 0;line-height:2;font-size:.9375rem}
+.about-section h2{border:none;margin-top:0}
+.accent-link{color:var(--accent,#2563eb);text-decoration:none}
+.accent-link:hover{text-decoration:underline}
+.back-link{font-size:.75rem;color:#bbb;margin-top:8px}
+.back-link a{color:var(--accent,#2563eb);text-decoration:none}
 
 /* ===== Responsive ===== */
 @media(max-width:600px){
   body{padding:0 16px 40px}
-  header{padding:32px 0 16px;flex-direction:column;align-items:flex-start}
+  header{padding:32px 0 12px}
+  .header-top{flex-direction:column;align-items:flex-start}
   .briefing-meta{flex-direction:column;align-items:flex-start;gap:4px}
   .content h2{margin:32px 0 16px}
 }
@@ -112,8 +138,10 @@ footer a:hover{color:#666}
   body{background:#0f0f11;color:#e0e0e0}
   header{border-bottom-color:#2a2a2e}
   header h1 a{color:#e0e0e0}
-  header nav a{color:#888}
-  header nav a:hover{color:#e0e0e0}
+  .header-nav a{color:#888}
+  .header-nav a:hover{color:#e0e0e0}
+  .tabs .tab{color:#888}
+  .tabs .tab:hover{color:#e0e0e0}
   .briefing-meta{border-bottom-color:#2a2a2e}
   .briefing-meta .date{color:#ccc}
   .content h2{border-bottom-color:#2a2a2e}
@@ -127,7 +155,7 @@ footer a:hover{color:#666}
   footer{border-top-color:#2a2a2e}
   .archive-list li{border-bottom-color:#2a2a2e}
   .archive-list li a{color:#e0e0e0}
-  .archive-list li a:hover{color:#60a5fa}
+  .archive-list li a:hover{color:var(--accent,#60a5fa)}
   .archive-list .arc-date{color:#666}
 }
 `
