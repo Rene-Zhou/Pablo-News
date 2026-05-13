@@ -101,7 +101,7 @@ app.get('/archive', async (c) => {
       ? '<span class="channel-tag tag-ai">科技</span>'
       : '<span class="channel-tag tag-games">游戏</span>'
     const href = e.channel === 'ai' ? '/' + e.date : '/games/' + e.date
-    return `<li><a href="${href}">${e.date}</a>${tag}</li>`
+    return `<li><a href="${href}" class="arc-date-link">${e.date}</a>${tag}</li>`
   }).join('')
 
   const extraCSS = `
@@ -109,6 +109,7 @@ app.get('/archive', async (c) => {
 .channel-tag{font-size:.6875rem;font-weight:600;padding:2px 8px;border-radius:3px;white-space:nowrap}
 .tag-ai{background:#dbeafe;color:#1d4ed8}
 .tag-games{background:#d1fae5;color:#047857}
+.arc-date-link{font-variant-numeric:tabular-nums;min-width:7.5em;display:inline-block}
 @media(prefers-color-scheme:dark){
   .tag-ai{background:#1e3a5f;color:#93c5fd}
   .tag-games{background:#064e3b;color:#6ee7b7}
