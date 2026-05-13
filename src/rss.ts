@@ -2,7 +2,7 @@ import { renderMarkdown, parseMeta } from './markdown'
 import type { Channel } from './render'
 
 const SITE_URL = 'https://news.renezhou.com'
-const SITE_NAME = '科技早报'
+const SITE_NAME = 'Pablo早报'
 
 function channelInfo(channel: Channel) {
   return channel === 'ai'

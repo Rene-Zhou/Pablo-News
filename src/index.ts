@@ -128,7 +128,7 @@ app.get('/archive', async (c) => {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>归档 — 科技早报</title>
+<title>归档 — Pablo早报</title>
 <link rel="icon" href="data:image/svg+xml,${encodeURIComponent(FAVICON_SVG)}">
 <meta name="description" content="AI 科技早报 · 每日清晨推送全球 AI 领域动态">
 <meta name="color-scheme" content="light dark">
@@ -137,7 +137,7 @@ app.get('/archive', async (c) => {
 <body style="--accent:#2563eb">
 <header>
   <div class="header-top">
-    <h1><a href="/">科技早报</a></h1>
+    <h1><a href="/">Pablo早报</a></h1>
     <nav class="header-nav">
       <a href="/">最新</a>
       <a href="/archive" class="tab active" style="color:var(--accent);border-bottom:2px solid var(--accent)">归档</a>
@@ -148,7 +148,7 @@ app.get('/archive', async (c) => {
   <nav class="tabs"><a href="/" class="tab">科技</a><a href="/games" class="tab">游戏</a></nav>
 </header>
 <main>${content}</main>
-<footer><p><a href="https://news.renezhou.com">科技早报</a> · 自动生成于 <a href="https://github.com/Rene-Zhou/Pablo-News">GitHub</a></p></footer>
+<footer><p>Pablo早报 · 科技早报 · 游戏速报 · 自动生成于 <a href="https://github.com/Rene-Zhou/Pablo-News">Pablo-News</a></p></footer>
 </body>
 </html>`)
 })

@@ -2,7 +2,7 @@ import { css } from './style'
 import { BriefingMeta } from './markdown'
 
 const SITE_URL = 'https://news.renezhou.com'
-const SITE_NAME = '科技早报'
+const SITE_NAME = 'Pablo早报'
 
 const FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#2563eb"/>
@@ -67,7 +67,7 @@ function Layout(props: { title: string; channel: Channel; children: string }) {
 </header>
 <main>${props.children}</main>
 <footer>
-  <p><a href="${SITE_URL}">${SITE_NAME}</a> · ${info.name} · 自动生成于 <a href="https://github.com/Rene-Zhou/Pablo-News">GitHub</a></p>
+  <p>Pablo早报 · 科技早报 · 游戏速报 · 自动生成于 <a href="https://github.com/Rene-Zhou/Pablo-News">Pablo-News</a></p>
 </footer>
 </body>
 </html>`
@@ -147,7 +147,7 @@ export function renderAbout(channel: Channel = 'ai'): string {
     title: '关于',
     channel,
     children: `<section class="about-section">
-      <h2>关于 科技早报</h2>
+      <h2>关于 Pablo早报</h2>
       <p>一份由 AI 自动生成的科技资讯精选，每日清晨推送。</p>
       <p>目前涵盖 <strong>AI 科技</strong> 和 <strong>游戏</strong> 两个频道。</p>
       <br>
